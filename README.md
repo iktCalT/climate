@@ -6,7 +6,7 @@ This program is composed of a main file (**app.py**) and 3 assistant files (**he
 To run this program, please use command `flask run`.
 
 > [!NOTE]
-> Becaues the original database ("static/weather.db") was too large to submit, I deleted most of its data. So, if you want to generate maps in the web page ("/maps"), please choose dates **between January 1950 and December 1963** or **between January 2010 and December 2023**.
+> Becaues the original database ("static/weather.db") was too large to submit, I deleted most of its data. So, if you want to generate maps in the web page ("/maps"), please choose dates **between January 1950 and December 1952** or **between January 2021 and December 2023**.
 
 1. **app.py** creates a web application, in which users can generate maps of climate data and check climate data history of a specific location. Users can also register and login as a administrator. Administrators have access to a web page called "/update", where they can add data to a temporary database, this temporary database can be merged into the main database if a higher-level administrator find no malicious data in it. Administrators can also change their profile icon or bio if they want to. 
 
