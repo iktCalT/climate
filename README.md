@@ -1,5 +1,4 @@
 # Climate
-#### Video Demo: https://youtu.be/uEoF2KTyW00
 #### Description:
 This program is my CS50 final project, which is composed of a main file (**app.py**), 3 assistant files (**helpers.py**, **helpers_data.py**, and **helpers_maps.py**), and 3 databases (**users.db**, **weather.db**, and **weather_update.db**).
 
