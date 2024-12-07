@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Locations
+{% endblock %}
+
+{% block main %}
+
+    {% if filename %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <p class="text-center fs-3">Latitude: {{ lat }}°N</p>
+                <p class="text-center fs-3">Longitude: {{ lon }}°E</p>
+            </div>
+            <div class="col my-auto">
+                <form action="/locations" method="get">
+                    <button class="btn btn-success me-auto d-block" type="submit">Clear</button>
+                </form>
+            </div>
+        </div>
+        <iframe src="{{ url_for('static', filename=filename ) }}" width="100%" height="720px" 
+        class="my-3" style="border:none;"></iframe>
+        
+    {% else %}
+        <form action="/locations" method="get" class="mx-auto" style="width:60%">
+            <div class="mb-3 row">
+                <h5>Please select a latitude and a longitude (Up to two decimal places)</h5>
+                <div class="form-group col-sm-6">
+                    <label for="latitude" class="col-form-label d-block ms-auto w-100">Latitude (°N):</label>
+                    <input autocomplete="off" class="form-control ms-auto w-100" name="latitude"
+                        type="number" step=".01" min="-90" max="90" required>
+                </div>
+                <div class="form-group col-sm-6">
+                    <label for="longitude" class="col-form-label d-block me-auto w-100">Longitude (°E):</label>
+                    <input autocomplete="off" class="form-control me-auto w-100" name="longitude"
+                        type="number" step=".01" min="-180" max="180" required>
+                </div>
+            </div>
+            <button class="btn btn-success" type="submit">Generate</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

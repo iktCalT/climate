@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block main %}
+    {% if message %}
+    <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{ message }}</strong>
+    </div>
+    {% endif %}
+
+
+    <div class="mx-auto user_info two-col" style="width: 800px;">
+        <div class="row row-cols-1 mb-3">
+            <div class="col-3">
+                <div class="ms-auto" style="width: 100%;">
+                    {% if imgname %}
+                        <img src="/static/user_img/{{ imgname }}" alt="Profile icon" style="width:100%;">
+                    {% else %}
+                        <img src="/static/user_img/default_icon.png" alt="Default profile icon" style="width:100%;">
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-9 d-flex align-items-center justify-content-center">
+                <div>
+                    {% if username %}
+                        <h1 class="text-primary"><strong>{{ username }}</strong></h1>
+                    {% else %}
+                        <h1 class="text-danger"><strong>ERROR!</strong></h1>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="row row-cols-2 mb-3">
+            <!-- Place for self introduction -->
+            <div class="col-3">
+                <div class="mb-3 ms-auto" style="width: 100%;">
+                    <form action="/profile" method="post" class="avatar-input-form" enctype="multipart/form-data">
+                        <input name="img" type="file" class="file form-control form-control-sm" data-show-preview="true" accept="image/*">
+                        <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-9">
+                <form action="/profile" method="post">
+                    <label for="bio" class="mb-1" style="float:left">Bio:</label>
+                    <textarea class="form-control" rows="7" name="bio" id="bio">{% if bio %}{{ bio }}{% endif %}</textarea>
+                    <button class="btn btn-primary mt-3" type="submit">Save</button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update
+{% endblock %}
+
+{% block main %}
+    {% if message %}
+    <div class="alert alert-success alert-dismissible text-center fade show" role="alert">
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        <strong>{{ message }}</strong>
+    </div>
+    {% endif %}
+
+    <form action="/update" method="post" class="mx-auto" style="width:60%">
+        <div class="mb-5 row">
+            <h5>Start and end latitudes and number of points</h5>
+            <p class="text-muted mb-0">for example: -90, 90, 91</p>
+            <div class="form-group col-sm-4">
+                <label for="lat_start" class="col-form-label d-block ms-auto w-100">Start Latitude (°N):</label>
+                <input autocomplete="off" class="form-control ms-auto w-100" name="lat_start"
+                    type="number" step=".01" min="-90" max="90" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="lat_end" class="col-form-label d-block me-auto w-100">End Latitude (°N):</label>
+                <input autocomplete="off" class="form-control me-auto w-100" name="lat_end"
+                    type="number" step=".01" min="-90" max="90" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="n_lat" class="col-form-label d-block me-auto w-100">Latitude Number:</label>
+                <input autocomplete="off" class="form-control me-auto w-100" name="n_lat"
+                    type="number" min="1" max="5000" required>
+            </div>
+        </div>
+
+        <div class="mb-5 row" >
+            <h5>Start and end longitudes and number of points</h5>
+            <p class="text-muted mb-0">for example: -180, 180, 91</p>
+            <div class="form-group col-sm-4">
+                <label for="lon_start" class="col-form-label d-block ms-auto w-100">Start Longitude (°E):</label>
+                <input autocomplete="off" class="form-control ms-auto w-100" name="lon_start"
+                    type="number" step=".01" min="-180" max="180" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="lon_end" class="col-form-label d-block me-auto w-100">End Longitude (°E):</label>
+                <input autocomplete="off" class="form-control me-auto w-100" name="lon_end"
+                    type="number" step=".01" min="-180" max="180" required>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="n_lon" class="col-form-label d-block me-auto w-100">Longitude Number:</label>
+                <input autocomplete="off" class="form-control me-auto w-100" name="n_lon"
+                    type="number" min="1" max="5000" required>
+            </div>
+        </div>
+
+        <div class="mb-5 row">
+            <h5>Range of dates</h5>
+            <div class="form-group col-sm-6">
+                <label for="date_start" class="col-form-label d-block ms-auto w-100">Start Date:</label>
+                <input autocomplete="off" class="form-control ms-auto w-100" name="date_start"
+                    data-provide="datepicker" type="date" min={{ start }} max={{ end }} required>
+            </div>
+            <div class="form-group col-sm-6">
+                <label for="date_end" class="col-form-label d-block me-auto w-100">End Date:</label>
+                <input autocomplete="off" class="form-control me-auto w-100" name="date_end"
+                    data-provide="datepicker" type="date" min={{ start }} max={{ end }} required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <input class="form-check-input" type="checkbox" value="True" name="force_update">
+            <label class="form-check-label" for="defaultCheck1">
+                Update when data already exist?
+            </label>
+            <p class="text-muted mb-0 mt-o small">(These data might be out-of-date)</p>
+        </div>
+        <div class="mb-5">    
+            <button class="btn btn-success" type="submit">Update</button>
+        </div>
+    </form>
+
+{% endblock %}

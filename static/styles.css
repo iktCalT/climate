@@ -1,0 +1,75 @@
+* {
+    transition: all 0.3s ease-in-out;
+}
+body
+{
+    background-color: rgba(255, 240, 179, 0.5);
+}
+body > nav
+{
+    background-color: hsl(156, 31%, 65%);
+}
+#gallery button
+{
+    background-color: hsla(0, 0%, 40%, 0.4);
+}
+/* Size for brand */
+nav .navbar-brand
+{
+    font-family: "Audiowide", Verdana, sans-serif;
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    letter-spacing: 5px;
+    color: #537fbe;
+}
+nav .navbar-brand .red
+{
+    letter-spacing: 5px;
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    letter-spacing: 5px;
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    letter-spacing: 5px;
+    color: #2e944b;
+}
+#navbar .dropdown-menu li :hover
+{
+    background-color: hsla(156, 31%, 65%, 0.4);
+}
+#navbar .nav-item
+{
+    font-weight: bold;
+}
+#navbar .nav-item :hover
+{
+    color: white;
+}
+
+*[disabled] {
+    caret-color: transparent;
+}
+
+table {
+    caret-color:transparent;
+}
+
+@media screen and (max-width: 800px) {
+    .user_info {
+        width: 80vw !important;
+    }
+    .three-col [class|="col"] {
+        width: 50% !important;
+    }
+    .two-col [class|="col"] {
+        width: 100% !important;
+    }
+}

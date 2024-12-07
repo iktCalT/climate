@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Maps
+{% endblock %}
+
+{% block main %}
+
+    {% if filename %}
+        <div class="row">
+            <div class="col"></div>
+            <div class="col">
+                <p class="text-center fs-3">{{ data_type }} for {{ month }}</p>
+            </div>
+            <div class="col">
+                <form action="/maps" method="get">
+                    <button class="btn btn-success me-auto d-block" type="submit">Clear</button>
+                </form>
+            </div>
+        </div>
+        <iframe src="{{ url_for('static', filename=filename ) }}" width="100%" height="720px" 
+        class="my-3" style="border:none;"></iframe>
+        
+    {% else %}
+        <form action="/maps" method="get">
+            <div class="mb-3">
+                <label for="month-picker"><h5>Select Year and Month:</h5></label>
+                <input autocomplete="off" class="form-control mx-auto w-auto" name="month-picker"
+                    data-provide="datepicker" type="month" min={{ start }} max={{ end }} required>
+            </div>
+            <label for="month-picker"><h5>Select a Type of Data:</h5></label>
+            <div class="mb-3">
+                <select class="form-select mx-auto w-auto" name="data-type" required>
+                    {% for data_type in data_types %}
+                        <option value="{{ data_type }}">{{ data_type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button class="btn btn-success" type="submit">Generate</button>
+        </form>
+    {% endif %}
+
+{% endblock %}

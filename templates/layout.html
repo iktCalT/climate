@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <!-- Modified according to CS50 problem set 9 (2024) -->
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1, width=device-width">
+
+        <!-- http://getbootstrap.com/docs/5.3/ -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+        <!-- https://www.iconfinder.com/icons/9079087/global_warming_climate_change_hot_heat_temperature_icon/ -->
+        <link href="/static/favicon.ico" rel="icon">
+        <link href="/static/styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Space+Mono|Muli">
+        <title>Climate: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <nav class="border navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/"><b><span class="blue">C</span><span class="red">l</span><span class="yellow">i</span><span class="green">mate</span></b></a>
+                <button aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbar" data-bs-toggle="collapse" type="button">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item navpages fs-5 mx-2"><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item navpages fs-5 mx-2"><a class="nav-link" href="/maps">Maps</a></li>
+                        <li class="nav-item navpages fs-5 mx-2"><a class="nav-link" href="/locations">Locations</a></li>
+                        {% if session["user_id"] %}
+                        <li class="nav-item navpages fs-5 mx-2"><a class="nav-link" href="/update">Update</a></li>
+                        {% endif %}
+                        <li class="nav-item navpages fs-5 mx-2"><a class="nav-link" href="/references">References</a></li>
+                    </ul>
+                    {% if session["user_id"] %}
+                        <ul class="navbar-nav ms-auto mx-3">
+                            <li class="nav-item dropdown nav-item">
+                                <a class="nav-link dropdown-toggle py-0 px-2" href="#" role="button" data-bs-toggle="dropdown">
+                                    {% if imgname %}
+                                        <img src="/static/user_img/{{ session['imgname'] }}" alt="Profile image" style="height: 3em; clip-path: circle(48%);">
+                                    {% else %}
+                                        <img src="/static/user_img/default_icon.png" alt="Default profile image" style="height: 3em; clip-path: circle(30%);">
+                                    {% endif %}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    <li><a class="nav-link" href="/profile">Profile</a></li>
+                                    <li><a class="nav-link" href="/logout">Log Out</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    {% else %}
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="/register">Register</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                        </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </nav>
+
+        {% if get_flashed_messages() %}
+            <header>
+                <div class="alert alert-primary mb-0 text-center" role="alert">
+                    {{ get_flashed_messages() | join(" ") }}
+                </div>
+            </header>
+        {% endif %}
+
+        <main class="container py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+        <footer class="mb-5 mt-auto">
+            <div class="d-flex justify-content-center align-items-center">
+                  
+                <span class="text-end p-0 text-muted"> Data provided by </span> 
+                <span class="align-items-center mx-1">
+                    <a href="https://open-meteo.com/" class="d-block me-auto">
+                        <img src="/static/open-meteo.ico" style="height: 18px; bottom: 0;" class="d-block me-auto">
+                    </a>
+                </span>
+            </div>
+            {% block script %}{% endblock %}
+        </footer>
+
+    </body>
+
+</html>
